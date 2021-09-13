@@ -1,0 +1,48 @@
+{% extends 'Management/Base.html' %}
+
+
+{% block title %}
+<title>Show Student</title>
+{% endblock %}
+
+{% block content %}
+  <div >
+      <h2 style="text-align:center">Student Details</h2><br>
+   <table class="table table-dark">
+       <tr>
+           <th>Roll No.</th>
+           <th>Name</th>
+           <th>Address</th>
+           <th>Department</th>
+       </tr>
+       {% for record in records %}
+        <tr>
+            <td>{{record.RollNo}}</td>
+            <td>{{record.Name}}</td>
+            <td>{{record.Address}}</td>
+            <td>{{record.DeptStudent}}</td>
+            <td>
+                <a href="{% url 'updatestudent' record.id %}">
+                    <button>Update</button>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'deletestudent' record.id %}">
+                    <button>Delete</button>
+                </a>
+            </td>
+
+
+        </tr>
+       {% endfor %}
+   </table>
+      <a href="{% url 'addstudent' %}">
+        <button>Add Student</button>
+      </a>
+      <a href="{% url 'home' %}">
+        <button>Homepage</button>
+      </a>
+
+  </div>
+
+{% endblock %}

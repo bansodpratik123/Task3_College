@@ -1,0 +1,83 @@
+{% extends 'Management/Base.html' %}
+
+
+{% block title %}
+<title>Search Result</title>
+{% endblock %}
+
+{% block content %}
+  <div >
+      <h2 style="text-align:center">Search results</h2><br>
+
+         <table class="table table-dark">
+       <tr>
+           <th>Name</th>
+           <th>Subject</th>
+           <th>Department</th>
+       </tr>
+       {% for record in records_Teacher %}
+        <tr>
+            <td>{{record.Name}}</td>
+            <td>{{record.Subject}}</td>
+
+            <td>{% for r in record.DeptTeacher.all %}
+                {{r}}
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{% url 'updateteacher' record.id %}">
+                    <button>Update</button>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'deleteteacher' record.id %}">
+                    <button>Delete</button>
+                </a>
+            </td>
+
+        </tr>
+       {% endfor %}
+   </table>
+
+
+
+
+
+      <table class="table table-dark">
+       <tr>
+           <th>Roll No.</th>
+           <th>Name</th>
+           <th>Address</th>
+           <th>Department</th>
+       </tr>
+       {% for record in records %}
+        <tr>
+            <td>{{record.RollNo}}</td>
+            <td>{{record.Name}}</td>
+            <td>{{record.Address}}</td>
+            <td>{{record.DeptStudent}}</td>
+            <td>
+                <a href="{% url 'updatestudent' record.id %}">
+                    <button>Update</button>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'deletestudent' record.id %}">
+                    <button>Delete</button>
+                </a>
+            </td>
+
+
+        </tr>
+       {% endfor %}
+   </table>
+      <a href="{% url 'addstudent' %}">
+        <button>Add Student</button>
+      </a>
+      <a href="{% url 'home' %}">
+        <button>Homepage</button>
+      </a>
+
+  </div>
+
+{% endblock %}
